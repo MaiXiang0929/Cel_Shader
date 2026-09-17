@@ -182,7 +182,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 35
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -208,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748771834}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0.207, y: 1.63, z: -1.39}
+  m_LocalRotation: {x: 0.12074329, y: 0, z: 0, w: 0.99268377}
+  m_LocalPosition: {x: 0, y: 1.44, z: -2.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,9 +299,9 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 0
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -347,13 +347,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101325088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.2193002, y: 0.5963329, z: -0.17381522, w: -0.7523848}
   m_LocalPosition: {x: 1.342, y: 1.482, z: 0.291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 32.5, y: 283.2, z: 0}
 --- !u!114 &1101325091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 3
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
+  m_SoftShadowQuality: 3
 --- !u!1 &1186811684
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +621,9 @@ PrefabInstance:
     - {fileID: 1449474084133812769, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     - {fileID: 5388705760342184351, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     - {fileID: 9210538953213871691, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
+    - {fileID: -7730075261853647636, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
+    - {fileID: 7668656170206893308, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
+    - {fileID: -1003187738084553979, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -6213826676293184441, guid: a4fb1d8931ee3244eb53676f701bf56f,
         type: 3}
