@@ -347,13 +347,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101325088}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2193002, y: 0.5963329, z: -0.17381522, w: -0.7523848}
+  m_LocalRotation: {x: -0.22638647, y: 0.56430316, z: -0.1644794, w: -0.7766967}
   m_LocalPosition: {x: 1.342, y: 1.482, z: 0.291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 32.5, y: 283.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 32.5, y: 288, z: 0}
 --- !u!114 &1101325091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,10 +571,60 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.116
       objectReference: {fileID: 0}
+    - target: {fileID: -1362820537086750093, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.754
+      objectReference: {fileID: 0}
+    - target: {fileID: -1362820537086750093, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 26756873077583429, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.062215
+      objectReference: {fileID: 0}
+    - target: {fileID: 26756873077583429, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.021361
+      objectReference: {fileID: 0}
+    - target: {fileID: 26756873077583429, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.164573
+      objectReference: {fileID: 0}
+    - target: {fileID: 671905640546317681, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1329
+      objectReference: {fileID: 0}
+    - target: {fileID: 671905640546317681, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1995
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a4fb1d8931ee3244eb53676f701bf56f,
         type: 3}
       propertyPath: m_Name
       value: Lumine FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218463738236478635, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1274
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218463738236478635, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218463738236478635, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0758
       objectReference: {fileID: 0}
     - target: {fileID: 3584105764881259530, guid: a4fb1d8931ee3244eb53676f701bf56f,
         type: 3}
@@ -611,6 +661,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 9023320964320603922, guid: a4fb1d8931ee3244eb53676f701bf56f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.698
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     m_RemovedGameObjects:
@@ -624,6 +679,8 @@ PrefabInstance:
     - {fileID: -7730075261853647636, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     - {fileID: 7668656170206893308, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     - {fileID: -1003187738084553979, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
+    - {fileID: -7456107099924118615, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
+    - {fileID: -5350839236921848050, guid: a4fb1d8931ee3244eb53676f701bf56f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -6213826676293184441, guid: a4fb1d8931ee3244eb53676f701bf56f,
         type: 3}

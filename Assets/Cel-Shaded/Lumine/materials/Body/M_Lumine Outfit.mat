@@ -29,7 +29,6 @@ Material:
   - _USE_OUTLINE
   - _USE_RAMP_SHADOW
   - _USE_RIM
-  - _USE_SPECULAR
   m_InvalidKeywords:
   - _USERAMPSHADOW2_ON
   - _USERAMPSHADOW3_ON
@@ -129,8 +128,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MetalIntensity: 1
-    - _MetalShininess: 256
+    - _MetalIntensity: 0
+    - _MetalShininess: 8
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -138,18 +137,18 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimIntensity: 1
-    - _RimPower: 4
+    - _RimIntensity: 2.62
+    - _RimPower: 3.12
     - _RimThreshold: 0.3
-    - _ShadowPosition: 0.57
-    - _ShadowRampWidth: 1.38
-    - _ShadowSoftness: 2.58
-    - _Shininess: 64
+    - _ShadowPosition: 0.31
+    - _ShadowRampWidth: 0
+    - _ShadowSoftness: 5
+    - _Shininess: 44
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularSoftness: 0.04
-    - _SpecularThreshold: 0.55
+    - _SpecularSoftness: 0.5
+    - _SpecularThreshold: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -162,7 +161,7 @@ Material:
     - _UseRampShadow4: 1
     - _UseRampShadow5: 1
     - _UseRim: 1
-    - _UseSpecular: 1
+    - _UseSpecular: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

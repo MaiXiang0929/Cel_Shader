@@ -16,7 +16,6 @@ Material:
   - _USE_OUTLINE
   - _USE_RAMP_SHADOW
   - _USE_RIM
-  - _USE_SPECULAR
   m_InvalidKeywords:
   - _USERAMPSHADOW2_ON
   - _USERAMPSHADOW3_ON
@@ -128,9 +127,9 @@ Material:
     - _RimIntensity: 1
     - _RimPower: 4
     - _RimThreshold: 0.2
-    - _ShadowPosition: 0.71
-    - _ShadowRampWidth: 2.46
-    - _ShadowSoftness: 2.81
+    - _ShadowPosition: 0.43
+    - _ShadowRampWidth: 0.28
+    - _ShadowSoftness: 5
     - _Shininess: 32
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -149,7 +148,7 @@ Material:
     - _UseRampShadow4: 1
     - _UseRampShadow5: 1
     - _UseRim: 1
-    - _UseSpecular: 1
+    - _UseSpecular: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

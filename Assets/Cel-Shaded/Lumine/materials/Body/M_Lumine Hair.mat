@@ -112,8 +112,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MetalIntensity: 1
-    - _MetalShininess: 256
+    - _MetalIntensity: 0
+    - _MetalShininess: 8
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -127,12 +127,12 @@ Material:
     - _ShadowPosition: 0.51
     - _ShadowRampWidth: 16.3
     - _ShadowSoftness: 0.5
-    - _Shininess: 146
+    - _Shininess: 130
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularSoftness: 0.194
-    - _SpecularThreshold: 0.386
+    - _SpecularSoftness: 0.5
+    - _SpecularThreshold: 0.078
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
