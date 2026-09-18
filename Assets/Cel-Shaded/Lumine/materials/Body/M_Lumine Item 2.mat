@@ -130,7 +130,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightMapSpecularAreaInfluence: 0
+    - _LightMapSpecularAreaInfluence: 0.68
     - _MatCapBlend: 1
     - _MatCapIntensity: 1
     - _MatCapMaskSoftness: 0.05
