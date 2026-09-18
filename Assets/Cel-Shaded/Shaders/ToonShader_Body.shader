@@ -24,9 +24,19 @@ Shader "Cel-Shading/ToonBody"
         _Shininess ("Shininess", Range(8, 256)) = 32
         _SpecularThreshold ("Specular Threshold", Range(0, 1)) = 0.5 // 控制高光大小
         _SpecularSoftness ("Specular Softness", Range(0, 0.5)) = 0.05 // 控制高光边缘软硬
+        _LightMapSpecularAreaInfluence ("LightMap B Specular Area", Range(0, 1)) = 0
         // Metal Specular
         _MetalIntensity ("Metal Intensity", Range(0, 5)) = 1.0
         _MetalShininess ("Metal Shininess", Range(8, 512)) = 256 // 金属高光通常更聚集
+
+        [Header(MatCap)]
+        [Toggle(_USE_MATCAP)] _UseMatCap ("Enable MatCap", Float) = 0
+        [NoScaleOffset] _MatCapTex ("MatCap Texture", 2D) = "gray" {}
+        _MatCapColor ("MatCap Tint", Color) = (1, 1, 1, 1)
+        _MatCapIntensity ("MatCap Intensity", Range(0, 3)) = 1
+        _MatCapBlend ("MatCap Blend", Range(0, 1)) = 1
+        _MatCapMaskThreshold ("Metal Mask Threshold", Range(0, 1)) = 0.85
+        _MatCapMaskSoftness ("Metal Mask Softness", Range(0.001, 0.2)) = 0.05
 
         [Header(Lighting Options)]
         _DayOrNight ("Day Or Night", Range(0, 1)) = 0 // 日夜切换参数
@@ -74,8 +84,16 @@ Shader "Cel-Shading/ToonBody"
                 float _Shininess;
                 float _SpecularThreshold;
                 float _SpecularSoftness;
+                float _LightMapSpecularAreaInfluence;
                 float _MetalIntensity;
                 float _MetalShininess;
+
+                // MatCap
+                float4 _MatCapColor;
+                float _MatCapIntensity;
+                float _MatCapBlend;
+                float _MatCapMaskThreshold;
+                float _MatCapMaskSoftness;
 
                 // Lighting Options
                 float _DayOrNight;
@@ -95,8 +113,28 @@ Shader "Cel-Shading/ToonBody"
             SAMPLER(sampler_LightMap);
             TEXTURE2D(_RampTex);
             SAMPLER(sampler_RampTex);
+            TEXTURE2D(_MatCapTex);
+            SAMPLER(sampler_MatCapTex);
 
-            half3 CalculateCelAdditionalLight(Light light, half3 N, half3 V, half3 baseColor, float metalMask)
+            float GetRegularSpecularThreshold(float lightMapSpecularArea)
+            {
+                // 原始数据中 B 越亮，高光允许出现的范围越大；0 基本关闭普通高光。
+                float lightMapThreshold = saturate(1.015 - lightMapSpecularArea);
+                return lerp(
+                    _SpecularThreshold,
+                    max(_SpecularThreshold, lightMapThreshold),
+                    _LightMapSpecularAreaInfluence
+                );
+            }
+
+            half3 CalculateCelAdditionalLight(
+                Light light,
+                half3 N,
+                half3 V,
+                half3 baseColor,
+                float metalMask,
+                float lightMapSpecularArea
+            )
             {
                 // 计算光照分量
                 half3 L = normalize(light.direction);
@@ -113,7 +151,8 @@ Shader "Cel-Shading/ToonBody"
                 
                 //  附加光高光 (卡通化)
                 float specBase = pow(NoH, _Shininess);
-                float specStep = smoothstep(_SpecularThreshold, _SpecularThreshold + _SpecularSoftness, specBase);
+                float regularSpecThreshold = GetRegularSpecularThreshold(lightMapSpecularArea);
+                float specStep = smoothstep(regularSpecThreshold, regularSpecThreshold + _SpecularSoftness, specBase);
                 half3 specColor = lerp(_SpecularColor.rgb, baseColor * _MetalIntensity, metalMask);
                 half3 specular = specStep * specColor;
 
@@ -237,6 +276,7 @@ Shader "Cel-Shading/ToonBody"
                 #pragma shader_feature_local _USE_LIGHTMAP_AO // A0开关
                 #pragma shader_feature_local _USE_RAMP_SHADOW // 色阶阴影开关
                 #pragma shader_feature_local _USE_SPECULAR // 高光开关
+                #pragma shader_feature_local_fragment _USE_MATCAP // MatCap开关
                 #pragma shader_feature_local _USE_RIM // 轮廓光开关
                 #pragma shader_feature_loca _USE_OUTLINE // 描边开关
 
@@ -305,6 +345,13 @@ Shader "Cel-Shading/ToonBody"
                     half4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv0);
                     half4 lightMap = SAMPLE_TEXTURE2D(_LightMap,sampler_LightMap, input.uv0);
 
+                    // 原神角色 LightMap 的 R 通道使用离散值；高值区域代表金属材质。
+                    half metalMask = smoothstep(
+                        _MatCapMaskThreshold,
+                        _MatCapMaskThreshold + _MatCapMaskSoftness,
+                        lightMap.r
+                    );
+
                     // Half Lambert
                     half halflambert = NoL * 0.5 + 0.5; // Half lambert (0, 1)
                     halflambert *= pow(halflambert, 2);
@@ -349,16 +396,26 @@ Shader "Cel-Shading/ToonBody"
                         half3 finalColor = baseMap.rgb * combinedLight * (shadow + 0.2);
                     #endif
 
+                    // MatCap 是视角空间反射，不参与逐光源循环。阴影衰减用于避免暗部自发光感。
+                    #if _USE_MATCAP
+                        half3 normalVS = normalize(TransformWorldToViewDir(N, true));
+                        half2 matCapUV = normalVS.xy * 0.5h + 0.5h;
+                        half3 matCapSample = SAMPLE_TEXTURE2D(_MatCapTex, sampler_MatCapTex, matCapUV).rgb;
+                        half matCapShadow = lerp(0.45h, 1.0h, saturate(shadow));
+                        half3 matCapSurface = baseMap.rgb * matCapSample * _MatCapColor.rgb;
+                        matCapSurface *= _MatCapIntensity * matCapShadow;
+                        finalColor = lerp(finalColor, matCapSurface, saturate(metalMask * _MatCapBlend));
+                    #endif
+
                     // Specular
                     half3 finalSpecular = half3(0, 0, 0);
                     #if _USE_SPECULAR
-                        //获取金属度遮罩 (从 LightMap 的 R 通道读取)    
-                        float metalMask = lightMap.r;
                         // 基础 Blinn-Phong 高光
                         float specBase = pow(NoH, _Shininess);
                         // 卡通化处理：通过 smoothstep 限制高光范围，使其边缘变硬
-                        // 使用 _SpecularThreshold 控制高光区域大小
-                        float specStep = smoothstep(_SpecularThreshold, _SpecularThreshold + _SpecularSoftness, specBase);
+                        // 全局阈值提供艺术控制，LightMap B 进一步限制普通高光区域。
+                        float regularSpecThreshold = GetRegularSpecularThreshold(lightMap.b);
+                        float specStep = smoothstep(regularSpecThreshold, regularSpecThreshold + _SpecularSoftness, specBase);
                         half3 regularSpec = specStep * _SpecularColor.rgb;
 
                         // 金属高光(特点：高倍率 Shininess，且颜色受 BaseMap 影响)
@@ -401,7 +458,7 @@ Shader "Cel-Shading/ToonBody"
                             Light addLight = GetAdditionalLight(lightIndex, input.positionWS, shadowCoord);
                             
                             // 累加附加光贡献
-                            finalColor += CalculateCelAdditionalLight(addLight, N, V, baseMap.rgb, lightMap.r);
+                            finalColor += CalculateCelAdditionalLight(addLight, N, V, baseMap.rgb, metalMask, lightMap.b);
                         }
                     #endif
 

@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _USE_LIGHTMAP_AO
+  - _USE_MATCAP
   - _USE_OUTLINE
   - _USE_RAMP_SHADOW
   - _USE_RIM
@@ -73,6 +74,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: a2e1264c08317ff498c30811f17fbf3b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCapTex:
+        m_Texture: {fileID: 2800000, guid: f55cfeeb73d43e94392665081e021212, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -116,7 +121,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DayOrNight: 0
+    - _DayOrNight: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -125,6 +130,11 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _LightMapSpecularAreaInfluence: 0
+    - _MatCapBlend: 1
+    - _MatCapIntensity: 1
+    - _MatCapMaskSoftness: 0.05
+    - _MatCapMaskThreshold: 0.051
     - _MetalIntensity: 1
     - _MetalShininess: 256
     - _Metallic: 0
@@ -151,6 +161,7 @@ Material:
     - _Surface: 0
     - _UVSec: 0
     - _UseLightMapAO: 1
+    - _UseMatCap: 1
     - _UseOutline: 1
     - _UseRampShadow: 1
     - _UseRampShadow2: 0
@@ -165,6 +176,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
