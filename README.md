@@ -105,7 +105,7 @@ Assets/Cel-Shaded/
 2. 克隆仓库：
 
    ```bash
-   git clone https://github.com/MaiXiang0929/UnityShader_Practice.git
+   git clone https://github.com/MaiXiang0929/Cel_Shader.git
    ```
 
 3. 使用 Unity Hub 通过 **Unity 2022.3.62f3 LTS** 打开项目。
